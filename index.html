@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 1 · Line Graphs — тренажер</title>
+<style>
+:root{
+  --bg:#F7F5EC; --card:#FFFFFF; --ink:#22271E; --muted:#6E7468; --line:#E4E1D2;
+  --green:#1E5631; --green-soft:#E9F2E4;
+  --lime:#84CC16; --lime-soft:#F2F9E0;
+  --yellow:#FDE047;
+  --orange:#E8890C; --orange-soft:#FCF1DE;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--bg); font-family:'Segoe UI',system-ui,sans-serif; color:var(--ink);}
+.topbar{max-width:1100px; margin:0 auto; padding:14px 16px 8px; display:flex; align-items:baseline; gap:14px; flex-wrap:wrap;}
+.topbar h1{font-family:Georgia,serif; font-size:22px; color:var(--green);}
+.topbar span{font-size:13px; color:var(--muted);}
+.steps{max-width:1100px; margin:0 auto; padding:6px 16px 12px; display:flex; gap:8px; flex-wrap:wrap;}
+.step{border:1.5px solid var(--line); background:var(--card); border-radius:20px; padding:6px 14px; font-size:13px; font-weight:600; cursor:pointer; color:var(--muted); font-family:inherit;}
+.step:hover{border-color:var(--green);}
+.step.active{background:var(--green); border-color:var(--green); color:#fff;}
+.frame-wrap{max-width:1100px; margin:0 auto; padding:0 16px 30px;}
+iframe{width:100%; height:1050px; border:none; border-radius:14px; background:var(--bg);}
+.nav{display:flex; justify-content:space-between; max-width:1100px; margin:0 auto; padding:0 16px 24px;}
+.btn{border:none; border-radius:10px; padding:10px 20px; font-size:14px; font-weight:600; cursor:pointer; font-family:inherit;}
+.btn-next{background:var(--green); color:#fff;}
+.btn-prev{background:transparent; border:1.5px solid var(--green); color:var(--green);}
+.btn:disabled{opacity:.35; cursor:default;}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <h1>Module 1 · Line Graphs</h1>
+  <span>йди по кроках по черзі — кожен тренажер відкриває наступний навик</span>
+</div>
+
+<div class="steps" id="steps"></div>
+
+<div class="frame-wrap">
+  <iframe id="frame" src="01-overview-trainer.html" title="Тренажер"></iframe>
+</div>
+
+<div class="nav">
+  <button class="btn btn-prev" id="prev">← Назад</button>
+  <button class="btn btn-next" id="next">Далі →</button>
+</div>
+
+<script>
+const PAGES = [
+  { file:'01-overview-trainer.html', label:'1 · Бачити' },
+  { file:'02-grouping-trainer.html', label:'2 · Групувати' },
+  { file:'03-parts-trainer.html',    label:'3 · Писати по частинах' },
+  { file:'04-final-tasks.html',      label:'4 · Фінальні завдання' },
+  { file:'05-vocabulary.html',       label:'Словник' }
+];
+let cur = 0;
+const stepsBox = document.getElementById('steps');
+stepsBox.innerHTML = PAGES.map((p,i)=>'<button class="step" id="st'+i+'" onclick="go('+i+')">'+p.label+'</button>').join('');
+
+function go(i){
+  cur = i;
+  document.getElementById('frame').src = PAGES[i].file;
+  PAGES.forEach((p,j)=>document.getElementById('st'+j).classList.toggle('active', j===i));
+  document.getElementById('prev').disabled = (i===0);
+  document.getElementById('next').disabled = (i===PAGES.length-1);
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+document.getElementById('prev').onclick = ()=>go(Math.max(0,cur-1));
+document.getElementById('next').onclick = ()=>go(Math.min(PAGES.length-1,cur+1));
+go(0);
+</script>
+
+</body>
+</html>

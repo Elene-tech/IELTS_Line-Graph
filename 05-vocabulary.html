@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Словник модуля · Line Graphs</title>
+<style>
+:root{
+  --bg:#F7F5EC; --card:#FFFFFF; --ink:#22271E; --muted:#6E7468; --line:#E4E1D2;
+  --green:#1E5631; --green-soft:#E9F2E4;
+  --lime:#84CC16; --lime-soft:#F2F9E0;
+  --yellow:#FDE047;
+  --orange:#E8890C; --orange-soft:#FCF1DE;
+  --red:#B3402E; --red-soft:#F8E9E5;
+  --purple:#7A5AA0; --purple-soft:#F1ECF7;
+  --blue:#2E5A88;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--bg); color:var(--ink); font-family:'Segoe UI',system-ui,-apple-system,sans-serif; font-size:15px; line-height:1.55; padding:24px 16px 60px;}
+.wrap{max-width:820px; margin:0 auto;}
+h1,h2{font-family:Georgia,'Times New Roman',serif; color:var(--green);}
+h1{font-size:28px; margin-bottom:6px;}
+h2{font-size:20px; margin:30px 0 10px; border-bottom:2px solid var(--lime); padding-bottom:4px;}
+.sub{color:var(--muted); font-size:14px; margin-bottom:20px;}
+mark{background:var(--yellow); padding:0 3px; border-radius:2px;}
+.card{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:18px 20px; margin-bottom:16px; box-shadow:0 1px 3px rgba(30,60,30,.05);}
+table{width:100%; border-collapse:collapse; font-size:14px; margin-top:8px;}
+th,td{border:1px solid var(--line); padding:8px 10px; text-align:left; vertical-align:top;}
+th{background:var(--green-soft); color:var(--green); font-weight:600;}
+tr:nth-child(even) td{background:#FBFAF4;}
+.note{background:var(--purple-soft); border-left:3px solid var(--purple); padding:10px 14px; border-radius:0 8px 8px 0; font-size:13px; margin-top:10px;}
+.warn{background:var(--red-soft); border-left:3px solid var(--red); padding:10px 14px; border-radius:0 8px 8px 0; font-size:13px; margin-top:10px;}
+.small{font-size:12.5px; color:var(--muted);}
+.trend{color:var(--green); font-weight:600;}
+.x{color:var(--red);} .v{color:var(--green);}
+.two{display:flex; gap:16px; flex-wrap:wrap;}
+.two>div{flex:1; min-width:280px;}
+ul{padding-left:20px;}
+li{margin:4px 0;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>Словник модуля · Line Graphs</h1>
+<p class="sub">Довідка, а не текст для читання. Тримай відкритою під час написання перших 5–6 есе: свідомо обирай <mark>2 дієслова зростання, 2 падіння, 1 шаблон речення</mark> на кожне есе. Після 5–6 есе набір запам'ятається сам.</p>
+
+<h2>1 · Матриця: напрямок × сила</h2>
+<div class="card">
+<table>
+<tr><th></th><th>Плавна</th><th>Помірна</th><th>Різка</th></tr>
+<tr><td><b>↑ Зростання</b></td><td class="trend">rise slightly · edge up · inch up</td><td class="trend">rise · increase · grow · climb</td><td class="trend">soar · surge · rocket · shoot up</td></tr>
+<tr><td><b>↓ Падіння</b></td><td class="trend">dip · decline slightly · edge down</td><td class="trend">fall · decrease · decline · drop</td><td class="trend">plummet · plunge · collapse · tumble</td></tr>
+<tr><td><b>→ Стабільність</b></td><td class="trend">remain stable · stay flat · hold steady</td><td class="trend">level off · plateau · stabilise at</td><td class="trend">fluctuate between X and Y</td></tr>
+<tr><td><b>⌒ Поворот</b></td><td class="trend">touch · reach a high of</td><td class="trend">peak at · hit a low of</td><td class="trend">bottom out at · bounce back</td></tr>
+</table>
+<div class="warn"><b>Драматичне слово — лише для змін 30–50%+.</b> 50 → 53 — це не soar. Одне-два драматичні слова на есе достатньо; зловживання = помилка влучності.</div>
+</div>
+
+<h2>2 · Дієслово ↔ іменник (подвій діапазону)</h2>
+<div class="card">
+<div class="two">
+<div>
+<table>
+<tr><th>Дієслово (динамічно)</th></tr>
+<tr><td>Prices <b>rose sharply</b>.</td></tr>
+<tr><td>Sales <b>fell dramatically</b>.</td></tr>
+<tr><td>Numbers <b>fluctuated</b>.</td></tr>
+<tr><td>Growth <b>slowed</b>.</td></tr>
+</table>
+</div>
+<div>
+<table>
+<tr><th>Іменник (аналітично)</th></tr>
+<tr><td>There was <b>a sharp rise</b> in prices.</td></tr>
+<tr><td>There was <b>a dramatic fall</b> in sales.</td></tr>
+<tr><td>There were <b>fluctuations</b> in the numbers.</td></tr>
+<tr><td>There was <b>a slowdown</b> in growth.</td></tr>
+</table>
+</div>
+</div>
+<p class="small" style="margin-top:8px;">Вживай обидва патерни приблизно 50/50 у body-абзацах — це найшвидший спосіб показати граматичний діапазон без нових слів.</p>
+</div>
+
+<h2>3 · Ручка сили: прислівники й прикметники</h2>
+<div class="card">
+<table>
+<tr><th>Степінь</th><th>Прислівники (з дієсловами)</th><th>Прикметники (з іменниками)</th></tr>
+<tr><td>Мала</td><td>slightly · marginally · minimally</td><td>slight · marginal · minimal · modest</td></tr>
+<tr><td>Рівна</td><td>gradually · steadily · consistently</td><td>gradual · steady · consistent</td></tr>
+<tr><td>Велика</td><td>significantly · considerably · substantially · markedly · noticeably</td><td>significant · considerable · substantial · marked · noticeable</td></tr>
+<tr><td>Екстремальна</td><td>dramatically · sharply · rapidly · steeply · drastically</td><td>dramatic · sharp · rapid · steep · drastic</td></tr>
+</table>
+<p class="small" style="margin-top:8px;">Мале зрушення = малий прислівник. Невідповідність слова розміру зміни = нижчий бал за Lexical Resource.</p>
+</div>
+
+<h2>4 · Апроксимація (жодного «голого» числа)</h2>
+<div class="card">
+<table>
+<tr><th>Фраза</th><th>Приклад</th></tr>
+<tr><td>approximately · about · around · roughly</td><td>Visitors reached <b>approximately 600,000</b>.</td></tr>
+<tr><td>just over / just under</td><td>The figure peaked at <b>just over 60%</b>.</td></tr>
+<tr><td>nearly · almost</td><td>Numbers <b>nearly doubled</b>, reaching almost 50,000.</td></tr>
+<tr><td>well over / well under</td><td>Spending fell to <b>well under</b> €10,000.</td></tr>
+</table>
+<div class="note">Апроксимуємо лише «проміжні» значення між лініями сітки. Якщо вісь чітко показує 50 — пиши 50%. Не вживай two approximators в одному реченні (✗ about approximately 500).</div>
+</div>
+
+<h2>5 · Прийменники з даними: to / by / of / at — зона найчастіших помилок</h2>
+<div class="card">
+<table>
+<tr><th>Патерн</th><th>Значення</th><th>Приклад</th></tr>
+<tr><td>rise/fall <b>to</b> X</td><td>фінальний рівень (куди)</td><td>Sales rose <b>to</b> 80,000.</td></tr>
+<tr><td>rise/fall <b>by</b> X</td><td>величина зміни (на скільки)</td><td>Sales rose <b>by</b> 15,000.</td></tr>
+<tr><td>a rise/fall <b>of</b> X</td><td>величина зміни (іменник)</td><td>a rise <b>of</b> 20%</td></tr>
+<tr><td>peak <b>at</b> · stand <b>at</b> · remain <b>at</b></td><td>рівень без руху</td><td>peaked <b>at</b> 90%</td></tr>
+<tr><td>fluctuate <b>around/between</b></td><td>зона коливання</td><td>fluctuated <b>between</b> 40 and 45</td></tr>
+<tr><td><b>from</b> X <b>to</b> Y</td><td>старт і фініш</td><td>grew <b>from</b> 10% <b>to</b> 35%</td></tr>
+</table>
+<div class="warn"><span class="x">The figure rose at 80,000</span> → <span class="v">rose to 80,000</span> (точка) · <span class="x">rose to 20%</span> (якщо зміна = 20 п.п.) → <span class="v">rose by 20 percentage points</span>. Перевір кожне число: це «точка» чи «різниця»?</div>
+</div>
+
+<h2>6 · Introduction: перефразуй завдання</h2>
+<div class="card">
+<ul>
+<li><b>shows</b> → illustrates · compares · depicts · presents information about</li>
+<li><b>the number of</b> → how many… · the quantity of…</li>
+<li><b>the percentage of</b> → the proportion of… · the share of…</li>
+<li><b>between 2000 and 2020</b> → over a 20-year period (from 2000 to 2020)</li>
+<li><b>in three countries</b> → in Japan, the USA and Sweden (назви їх — безкоштовна точність)</li>
+</ul>
+<p class="small" style="margin-top:8px;">1–2 речення, жодних даних. Скопійовані 3+ слова підряд не зараховуються в обсяг.</p>
+</div>
+
+<h2>7 · Overview: головні ознаки без цифр</h2>
+<div class="card">
+<table>
+<tr><th>Функція</th><th>Фрази</th></tr>
+<tr><td>Початок</td><td>Overall,… · In general,… · It is clear that… · What stands out is that…</td></tr>
+<tr><td>Загальний напрямок</td><td>…saw/experienced an overall increase (decline).</td></tr>
+<tr><td>Контраст всередині</td><td>…while/whereas the opposite trend can be seen in…</td></tr>
+<tr><td>Ранжування</td><td>…remained the largest/dominant/smallest category throughout the period.</td></tr>
+<tr><td>Найпомітніше</td><td>The most noticeable/striking feature is… · Of particular note is…</td></tr>
+<tr><td>Початок vs кінець</td><td>…ended the period considerably higher/lower than it began.</td></tr>
+</table>
+<div class="note">Тест: якщо у §2 є хоч одна цифра — це не overview. Патерн + контраст, і жодного числа.</div>
+</div>
+
+<h2>8 · Шаблони body-речень (тренд + дані + час)</h2>
+<div class="card">
+<ul>
+<li><b>Стартова точка:</b> In [year], [subject] stood at [figure], before [verb-ing] to [figure] in [year].</li>
+<li><b>Іменник на початку:</b> There was a [adjective] rise/fall in [subject], from X to Y.</li>
+<li><b>Погляд на період:</b> Over the following [decade], [subject] [verb] [adverb], reaching [figure] by [year].</li>
+<li><b>Порівняння:</b> [A] was considerably higher than [B], at X and Y respectively.</li>
+<li><b>Причетник-наслідок:</b> [Subject] [verb] to [figure], making it the largest category / overtaking [B].</li>
+<li><b>Despite-рамка:</b> Despite a slight dip in [year], [subject] ended the period at [figure].</li>
+<li><b>Число як підмет:</b> The figure for [A] doubled/tripled/halved, [verb-ing] from X to Y.</li>
+</ul>
+</div>
+
+<h2>9 · Прогнози (майбутні роки на осі)</h2>
+<div class="card">
+<table>
+<tr><th>Патерн</th><th>Приклад</th></tr>
+<tr><td>is expected/projected/forecast to + V</td><td>The figure <b>is projected to reach</b> 40% by 2040.</td></tr>
+<tr><td>is likely/unlikely to + V</td><td>Sales <b>are likely to</b> level off.</td></tr>
+<tr><td>projections suggest/indicate that…</td><td><b>Projections suggest</b> a slowdown after 2030.</td></tr>
+<tr><td>by 2040 vs in 2040</td><td><b>By 2040</b> — до того моменту; <b>in 2040</b> — у тому році.</td></tr>
+</table>
+<div class="warn"><span class="x">The percentage will increase to 42%.</span> → <span class="v">is expected to increase to 42%</span>. Графік дає прогноз, а не факт — will тут граматично необачний.</div>
+</div>
+
+<h2>10 · Перетини ліній: converge → draw level → overtake</h2>
+<div class="card">
+<table>
+<tr><th>Стадія</th><th>Дієслова</th><th>Приклад</th></tr>
+<tr><td>Зближення</td><td>converge · narrow · close the gap</td><td>The two lines <b>converged</b> between 2010 and 2015.</td></tr>
+<tr><td>Зрівняння</td><td>draw level · meet</td><td>They <b>drew level</b> at around 40% in 2015.</td></tr>
+<tr><td>Випередження</td><td>overtake · exceed · outstrip · surpass</td><td>Renewables <b>overtook</b> fossil fuels shortly afterwards.</td></tr>
+<tr><td>Розбіжність після</td><td>pull ahead · widen the gap · diverge</td><td>By 2025 renewables had <b>pulled well ahead</b>.</td></tr>
+</table>
+<p class="small" style="margin-top:8px;">Перетин — майже завжди головна ознака графіка: вона має бути в overview і задавати структуру body (до/після).</p>
+</div>
+
+<h2>11 · Зв'язки за функцією</h2>
+<div class="card">
+<ul>
+<li><b>Час:</b> then · next · over the next [period] · from that point on · by the end of the period</li>
+<li><b>Поворот:</b> before + -ing · after which · at which point · until [year] · from [year] onwards</li>
+<li><b>Контраст:</b> while · whereas · in contrast · however · conversely · unlike [A]</li>
+<li><b>Подібність:</b> similarly · likewise · a similar trend can be seen in</li>
+<li><b>Наслідок:</b> as a result · consequently · which meant (that) · making it…</li>
+<li><b>Сигнал групування:</b> Regarding [A]… · As for [B]… · Turning to [C]…</li>
+</ul>
+<p class="small" style="margin-top:8px;">Достатньо 5–6 різних на есе. Пастка: Then… Then… Then…</p>
+</div>
+
+<h2>12 · Пастки для україномовних</h2>
+<div class="card">
+<table>
+<tr><th>Пастка</th><th>✗ Неправильно</th><th>✓ Правильно</th></tr>
+<tr><td>«У два рази»</td><td class="x">increased in two times</td><td class="v">doubled / was twice as high</td></tr>
+<tr><td>grow up — лише про дітей</td><td class="x">Prices grew up</td><td class="v">Prices grew / rose / went up</td></tr>
+<tr><td>Прогноз ≠ факт</td><td class="x">The figure will reach 40%</td><td class="v">is projected to reach 40%</td></tr>
+<tr><td>Множина data</td><td class="x">the datas show / a data</td><td class="v">the data show / the figures show</td></tr>
+<tr><td>percent як іменник</td><td class="x">reached 50 percents</td><td class="v">reached 50% / fifty percent</td></tr>
+<tr><td>during + рік</td><td class="x">during 2015</td><td class="v">in 2015 / during 2010–2015</td></tr>
+<tr><td>amount vs number</td><td class="x">the amount of visitors</td><td class="v">the number of visitors</td></tr>
+<tr><td>schedule ≠ graph</td><td class="x">The schedule shows…</td><td class="v">The (line) graph shows…</td></tr>
+<tr><td>Причини й думки</td><td class="x">…because of the crisis</td><td class="v">(прибрати — Task 1 лише описує дані)</td></tr>
+</table>
+</div>
+
+<p class="small" style="margin-top:20px;">Порада напочаток: роздрукуй розділи 1, 4 і 5 і тримай перед очима під час перших есе. Через 5–6 завдань вони більше не знадобляться.</p>
+
+</div>
+</body>
+</html>
