@@ -320,17 +320,17 @@ function checkGroups(gid){
 
 /* ---------- Linkers drill ---------- */
 const GAPS = [
-  { before:"", after:" the two top performers, Shop 3 began at 72,000 euros in January.", ans:"Regarding", opts:["Regarding","However","Until"] },
-  { before:"Shop 3 fell sharply, ", after:" surging to a peak of roughly 79,000 euros in December.", ans:"before", opts:["before","after","while"] },
-  { before:"Germany rose steadily from 6% to 17%, ", after:" Poland lagged behind throughout the period.", ans:"whereas", opts:["whereas","until","Regarding"] },
-  { before:"", after:", coal was the only source to decline over the period.", ans:"In contrast", opts:["In contrast","Similarly","Then"] },
-  { before:"Three of the four shops ended the year higher; ", after:", Shop 4's revenue declined slightly.", ans:"however", opts:["however","before","as for"] },
-  { before:"", after:" 2025, renewable sources had overtaken fossil fuels.", ans:"By", opts:["By","In","During"] }
+  { before:"", after:" the two top performers, Shop 3 began at 72,000 euros in January.", ans:"Regarding", opts:["Regarding","However","Despite","Until"] },
+  { before:"Shop 3 fell sharply, ", after:" surging to a peak of roughly 79,000 euros in December.", ans:"before", opts:["before","after","while","until"] },
+  { before:"Germany rose steadily from 6% to 17%, ", after:" Poland lagged behind throughout the period.", ans:"whereas", opts:["whereas","therefore","unlike","until"] },
+  { before:"", after:", coal was the only source to decline over the period.", ans:"In contrast", opts:["In contrast","Similarly","Regarding","Despite"] },
+  { before:"Three of the four shops ended the year higher; ", after:", Shop 4's revenue declined slightly.", ans:"however", opts:["however","before","therefore","as for"] },
+  { before:"", after:" 2025, renewable sources had overtaken fossil fuels.", ans:"By", opts:["By","In","During","Until"] }
 ];
 
 function initGaps(){
   document.getElementById('gap-items').innerHTML = GAPS.map((g,i)=>
-    '<div class="gap-sentence">'+(i+1)+'. '+g.before+'<select class="gap" id="gap'+i+'">'+g.opts.map(o=>'<option>'+o+'</option>').join('')+'</select>'+g.after+'</div>'
+    '<div class="gap-sentence">'+(i+1)+'. '+g.before+'<select class="gap" id="gap'+i+'">'+shuffle(g.opts.slice()).map(o=>'<option>'+o+'</option>').join('')+'</select>'+g.after+'</div>'
   ).join('');
 }
 function checkGaps(){
