@@ -14,16 +14,16 @@
 }
 *{box-sizing:border-box; margin:0; padding:0;}
 body{background:var(--bg); font-family:'Segoe UI',system-ui,sans-serif; color:var(--ink);}
-.topbar{max-width:1300px; margin:0 auto; padding:14px 16px 8px; display:flex; align-items:baseline; gap:14px; flex-wrap:wrap;}
+.topbar{max-width:1100px; margin:0 auto; padding:14px 16px 8px; display:flex; align-items:baseline; gap:14px; flex-wrap:wrap;}
 .topbar h1{font-family:Georgia,serif; font-size:22px; color:var(--green);}
 .topbar span{font-size:13px; color:var(--muted);}
-.steps{max-width:1300px; margin:0 auto; padding:6px 16px 12px; display:flex; gap:8px; flex-wrap:wrap;}
+.steps{max-width:1100px; margin:0 auto; padding:6px 16px 12px; display:flex; gap:8px; flex-wrap:wrap;}
 .step{border:1.5px solid var(--line); background:var(--card); border-radius:20px; padding:6px 14px; font-size:13px; font-weight:600; cursor:pointer; color:var(--muted); font-family:inherit;}
 .step:hover{border-color:var(--green);}
 .step.active{background:var(--green); border-color:var(--green); color:#fff;}
-.frame-wrap{max-width:1300px; margin:0 auto; padding:0 16px 30px;}
+.frame-wrap{max-width:1100px; margin:0 auto; padding:0 16px 30px;}
 iframe{width:100%; height:1050px; border:none; border-radius:14px; background:var(--bg);}
-.nav{display:flex; justify-content:space-between; max-width:1300px; margin:0 auto; padding:0 16px 24px;}
+.nav{display:flex; justify-content:space-between; max-width:1100px; margin:0 auto; padding:0 16px 24px;}
 .btn{border:none; border-radius:10px; padding:10px 20px; font-size:14px; font-weight:600; cursor:pointer; font-family:inherit;}
 .btn-next{background:var(--green); color:#fff;}
 .btn-prev{background:transparent; border:1.5px solid var(--green); color:var(--green);}
@@ -71,6 +71,127 @@ function go(i){
 document.getElementById('prev').onclick = ()=>go(Math.max(0,cur-1));
 document.getElementById('next').onclick = ()=>go(Math.min(PAGES.length-1,cur+1));
 go(0);
+</script>
+
+<!-- ANSWER SAVER: autosave + download + view (local only, no server) -->
+<style>
+#ans-panel{position:fixed;right:14px;bottom:14px;z-index:9999;font-family:'Segoe UI',system-ui,sans-serif;}
+#ans-panel .ans-btn{display:block;width:100%;border:none;border-radius:10px;padding:10px 16px;font-size:13.5px;font-weight:600;cursor:pointer;margin-top:6px;text-align:left;font-family:inherit;}
+#ans-toggle{background:#1E5631;color:#fff;padding:12px 18px;font-size:14px;border-radius:24px;box-shadow:0 2px 8px rgba(0,0,0,.25);}
+#ans-toggle .cnt{background:#fff;color:#1E5631;border-radius:12px;padding:1px 8px;margin-left:6px;font-size:12px;}
+#ans-box{display:none;background:#fff;border:1.5px solid #1E5631;border-radius:14px;padding:14px;width:230px;box-shadow:0 4px 16px rgba(0,0,0,.2);}
+#ans-box h4{font-family:Georgia,serif;color:#1E5631;font-size:15px;margin:0 0 4px;}
+#ans-box .ans-note{font-size:11.5px;color:#6E7468;margin-bottom:6px;}
+#ans-box .b-txt{background:#E9F2E4;color:#1E5631;border:1.5px solid #1E5631;}
+#ans-box .b-png{background:#EDF3F9;color:#2E5A88;border:1.5px solid #2E5A88;}
+#ans-box .b-view{background:#F1ECF7;color:#7A5AA0;border:1.5px solid #7A5AA0;}
+#ans-box .b-clear{background:transparent;color:#B3402E;border:1.5px solid #B3402E;}
+#ans-view{display:none;position:fixed;inset:4% 6%;background:#F7F5EC;border:2px solid #1E5631;border-radius:16px;z-index:10000;padding:22px 26px;overflow-y:auto;font-family:'Segoe UI',system-ui,sans-serif;}
+#ans-view h3{font-family:Georgia,serif;color:#1E5631;margin-bottom:10px;}
+#ans-view .av-item{background:#fff;border:1px solid #E4E1D2;border-radius:10px;padding:12px 16px;margin-bottom:12px;}
+#ans-view .av-item h5{margin:0 0 6px;font-size:13px;color:#1E5631;}
+#ans-view .av-item pre{white-space:pre-wrap;font-size:13px;margin:0;font-family:inherit;color:#22271E;}
+#ans-view .av-close{position:absolute;top:14px;right:16px;border:none;background:#1E5631;color:#fff;border-radius:8px;padding:6px 14px;cursor:pointer;font-size:13px;}
+#ans-saved-flash{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:#1E5631;color:#fff;padding:8px 18px;border-radius:20px;font-size:13px;font-family:'Segoe UI',sans-serif;display:none;z-index:10001;}
+</style>
+<div id="ans-panel">
+  <button id="ans-toggle" class="ans-btn">💾 Мої відповіді<span class="cnt" id="ans-cnt">0</span></button>
+  <div id="ans-box">
+    <h4>Мої відповіді</h4>
+    <div class="ans-note">Збережено в цьому браузері. Нічого нікуди не надсилається.</div>
+    <button class="ans-btn b-view" id="ans-bview">👁 Переглянути</button>
+    <button class="ans-btn b-txt" id="ans-btxt">⬇ Завантажити .txt</button>
+    <button class="ans-btn b-png" id="ans-bpng">📷 Завантажити .png</button>
+    <button class="ans-btn b-clear" id="ans-bclear">🗑 Очистити все</button>
+  </div>
+</div>
+<div id="ans-view"><button class="av-close" id="ans-vclose">Закрити ✕</button><h3>Мої збережені відповіді</h3><div id="ans-vlist"></div></div>
+<div id="ans-saved-flash">✓ Збережено в браузері</div>
+<script>
+(function(){
+  if(window.__ansSaver) return; window.__ansSaver = true;
+  var PAGE = location.pathname.split('/').pop().replace('.html','') || 'page';
+  var KEY = 'ielts_answers_v1::' + PAGE;
+  function load(){ try{ return JSON.parse(localStorage.getItem(KEY)) || {}; }catch(e){ return {}; } }
+  function save(d){ try{ localStorage.setItem(KEY, JSON.stringify(d)); }catch(e){} }
+  var data = load();
+  var tas = Array.prototype.slice.call(document.querySelectorAll('textarea'));
+  tas.forEach(function(ta, i){
+    var id = ta.id || ('ta'+i);
+    if(data[id] && !ta.value) ta.value = data[id];
+    ta.setAttribute('data-ansid', id);
+    ta.addEventListener('input', function(){
+      var d = load();
+      if(ta.value.trim()) d[id] = ta.value; else delete d[id];
+      save(d); updateCnt(); flash();
+    });
+  });
+  function updateCnt(){ document.getElementById('ans-cnt').textContent = Object.keys(load()).length; }
+  var flashT = null;
+  function flash(){ var f = document.getElementById('ans-saved-flash'); f.style.display='block'; clearTimeout(flashT); flashT=setTimeout(function(){f.style.display='none';},1200); }
+  function entries(){
+    var d = load(), out = [];
+    tas.forEach(function(ta){
+      var id = ta.getAttribute('data-ansid');
+      if(d[id]){
+        var c = ta.closest('.card'); var h = c ? c.querySelector('h3') : null;
+        out.push({title: h ? h.textContent.trim() : 'Відповідь', text: d[id]});
+      }
+    });
+    return out;
+  }
+  document.getElementById('ans-toggle').addEventListener('click', function(){
+    var b = document.getElementById('ans-box'); b.style.display = b.style.display==='block'?'none':'block';
+  });
+  document.getElementById('ans-bview').addEventListener('click', function(){
+    var es = entries();
+    document.getElementById('ans-vlist').innerHTML = es.length ? es.map(function(e){
+      return '<div class="av-item"><h5>'+e.title.replace(/</g,'&lt;')+'</h5><pre>'+e.text.replace(/</g,'&lt;')+'</pre></div>';
+    }).join('') : '<p>Ще немає збережених відповідей на цій сторінці.</p>';
+    document.getElementById('ans-view').style.display='block';
+  });
+  document.getElementById('ans-vclose').addEventListener('click', function(){ document.getElementById('ans-view').style.display='none'; });
+  document.getElementById('ans-btxt').addEventListener('click', function(){
+    var es = entries(); if(!es.length) return;
+    var txt = document.title + ' - moi vidpovidi\n' + new Date().toLocaleString() + '\n\n' +
+      es.map(function(e){ return '=== ' + e.title + ' ===\n' + e.text; }).join('\n\n---\n\n');
+    var blob = new Blob([txt], {type:'text/plain;charset=utf-8'});
+    var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = PAGE + '-answers.txt'; a.click();
+  });
+  document.getElementById('ans-bpng').addEventListener('click', function(){
+    var es = entries(); if(!es.length) return;
+    var W = 1000, pad = 50, y = 0;
+    function hFor(t){ return 60 + Math.ceil(t.length/75) * 22; }
+    es.forEach(function(e){ y += 70 + hFor(e.text); });
+    var cv = document.createElement('canvas'); cv.width = W; cv.height = y + 40;
+    var ctx = cv.getContext('2d');
+    ctx.fillStyle = '#F7F5EC'; ctx.fillRect(0,0,W,cv.height);
+    ctx.fillStyle = '#1E5631'; ctx.font = 'bold 26px Georgia'; ctx.fillText(document.title, pad, 45);
+    ctx.fillStyle = '#6E7468'; ctx.font = '14px Segoe UI'; ctx.fillText('Moi vidpovidi - ' + new Date().toLocaleString(), pad, 72);
+    var yy = 110;
+    es.forEach(function(e){
+      ctx.fillStyle = '#fff'; ctx.fillRect(pad-12, yy-24, W-pad*2+24, 50 + hFor(e.text));
+      ctx.strokeStyle = '#E4E1D2'; ctx.strokeRect(pad-12, yy-24, W-pad*2+24, 50 + hFor(e.text));
+      ctx.fillStyle = '#1E5631'; ctx.font = 'bold 17px Segoe UI'; ctx.fillText(e.title.substring(0,80), pad, yy+4);
+      ctx.fillStyle = '#22271E'; ctx.font = '15px Segoe UI';
+      var words = e.text.split(/\s+/), line = '', ly = yy + 32;
+      words.forEach(function(w){
+        if((line + ' ' + w).length > 82){ ctx.fillText(line, pad, ly); ly += 22; line = w; }
+        else line = line ? line + ' ' + w : w;
+      });
+      ctx.fillText(line, pad, ly);
+      yy += 70 + hFor(e.text) + 12;
+    });
+    var a = document.createElement('a'); a.href = cv.toDataURL('image/png'); a.download = PAGE + '-answers.png'; a.click();
+  });
+  document.getElementById('ans-bclear').addEventListener('click', function(){
+    if(!confirm('Очистити ВСІ збережені відповіді на цій сторінці?')) return;
+    localStorage.removeItem(KEY);
+    tas.forEach(function(ta){ ta.value=''; ta.readOnly=false; ta.classList.remove('locked'); });
+    updateCnt();
+  });
+  updateCnt();
+})();
 </script>
 
 </body>
